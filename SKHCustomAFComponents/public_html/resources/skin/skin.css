@@ -1,0 +1,255 @@
+@charset "UTF-8";
+/**ADFFaces_Skin_File / DO NOT REMOVE**/
+@namespace af "http://xmlns.oracle.com/adf/faces/rich";
+@namespace dvt "http://xmlns.oracle.com/dss/adf/faces";
+
+/*
+ *
+ * ------------------------------------------------------------------[Custom]---[panelHeaderBsResponsive]--
+ * Responsive panel with title based on bootstrap grid
+ * Dependencies [bootstrap-5.1]
+ */
+ 
+.panelHeaderBsResponsive {}
+
+
+/*
+ *
+ * ------------------------------------------------------------------[PanelHeaderLayout]---[panelHeaderInlineTitle]--
+ * panel header with title placed in rounded border
+ * Dependencies [adf faces]
+ */
+af|panelHeader.panelHeaderInlineTitle {
+    border: 1px solid var(--border-light-color);
+    border-radius: 15px;
+    padding: 0 1rem 0.8rem;
+    margin-bottom: 1.5rem;
+}
+af|panelHeader.panelHeaderInlineTitle::title0,
+af|panelHeader.panelHeaderInlineTitle::title1,
+af|panelHeader.panelHeaderInlineTitle::title2 {
+    position: absolute;
+    margin-top: -18px;
+}
+af|panelHeader.panelHeaderInlineTitle::title-text0,
+af|panelHeader.panelHeaderInlineTitle::title-text1,
+af|panelHeader.panelHeaderInlineTitle::title-text2 {
+    background-color: #fff;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: var(--title2-font-size);
+}
+af|panelHeader.panelHeaderInlineTitle::content0,
+af|panelHeader.panelHeaderInlineTitle::content1,
+af|panelHeader.panelHeaderInlineTitle::content2 {
+    padding-top: 20px;
+}
+
+
+/*
+ *
+ * ------------------------------------------------------------------[selectOneRadio]---[radioButtonCard]--
+ * large radio buttons displays like cards with icon
+ * default skin and hover event style
+ * Dependencies [fontawesome6]
+ */
+
+af|selectOneRadio.radioButtonCard {
+    /*margin-top: 25px;*/
+    /*margin-bottom: 25px;*/
+}
+af|selectOneRadio.radioButtonCard::label {
+    font-size: var(--font-size-lg);
+    color: var(--primary-color);
+    padding-bottom: 15px;
+}
+af|selectOneRadio.radioButtonCard::content {
+    display: flex;
+}
+af|selectOneRadio.radioButtonCard::native-input {
+    display: none;
+    /*content: url("../resources/images/icons/square-regular.svg");*/
+    /*opacity: 0;*/
+    margin: 0px 0px 14px 0px;
+}
+af|selectOneRadio.radioButtonCard::content-input {
+    position: relative !important;
+    background-color: var(--panel-light-bg);
+    border-radius: var(--panels-border-raduis);
+    padding: 20px;
+    display: inline-grid;
+}
+af|selectOneRadio.radioButtonCard::content-input:lang(en) {
+    margin-right: 10px;
+}
+af|selectOneRadio.radioButtonCard::content-input:lang(ar) {
+    margin-left: 10px;
+}
+af|selectOneRadio.radioButtonCard::item-text {
+    margin-left: 0px;
+    font-size: var(--font-size-lg);
+}
+af|selectOneRadio.radioButtonCard::item-text::after {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    content: "";
+}
+/** RADIO HOVER **/
+af|selectOneRadio.radioButtonCard::content-input:hover {
+    background-color: var(--secondary-color);
+    transition: all 0.5s ease 0s;
+}
+af|selectOneRadio.radioButtonCard::item-text:hover,
+af|selectOneRadio.radioButtonCard.cardIco::content-input:hover:before,
+.radioButtonCard.cardIco input[type="radio"]:hover + label:before,
+af|selectOneRadio.radioButtonCard.cardIco::native-input:hover:before {
+    transition: all 0.3s ease 0s;
+    color: #fff;
+}
+
+
+
+/*
+ *
+ * ------------------------------------------------------------------[Custom]---[verticalTracker]--
+ * Draw vertical tracker programmatically
+ * Dependencies [fontawesome6] [HTML5] [bootstrap5.1]
+ */
+
+.verticalTracker {
+    margin-bottom: 1rem
+}
+.verticalTracker .tracking-item {
+    border-left: 1px dashed #e5e5e5;
+    position: relative;
+    /*padding: 2rem 1.5rem .5rem 2.5rem;*/
+    padding: 1rem 2rem;
+    /*margin-left: 3rem;*/
+    margin-left: 2rem;
+    min-height: 5rem
+}
+.verticalTracker .tracking-item .tracking-date {
+    margin-bottom: .5rem
+}
+.verticalTracker .tracking-item .tracking-content .item-label {
+    font-size: var(--font-size-md);
+}
+.verticalTracker .tracking-item .tracking-content {
+    /*padding: 0px 0.5rem .8rem;*/
+    padding: 0px 1rem .8rem;
+}
+.verticalTracker .tracking-item .tracking-content span {
+    display: block;
+}
+.verticalTracker .tracking-item .tracking-icon {
+    /*line-height: 2.6rem;*/
+    line-height: 3.6rem;
+    position: absolute;
+    /*left: -1.3rem;
+    width: 2.6rem;*/
+    /*left: -1.5rem;*/
+    left: -2.1rem;
+    /*width: 3rem;*/
+    width: 4rem;
+    /*height: 2.6rem;*/
+    height: 3.5rem;
+    text-align: center;
+    border-radius: 20%;
+    font-size: var(--font-size-xl);
+    /*background-color: var(--primary-color);*/
+    background-color: rgb(108,117,125,.75);
+    color: #fff !important;
+}
+
+
+/*
+ *
+ * ------------------------------------------------------------------[PanelHeaderLayout]---[AFPanelIcoFA]--
+ * FontAwesome icon for a PanelHeaderLayout
+ * Dependencies [fontawesome6]
+ */
+af|panelHeader.AFPanelIcoFA::title-text0:before,
+af|panelHeader.AFPanelIcoFA::title-text1:before,
+af|panelHeader.AFPanelIcoFA::title-text2:before {
+    font-family: var(--font-awesome-family);
+    font-weight: var(--font-awesome-light);
+    display: inline-flex;
+    flex-wrap: nowrap;
+    color: var(--secondary-color);
+}
+af|panelHeader.AFPanelIcoFA::title-text0:lang(en):before,
+af|panelHeader.AFPanelIcoFA::title-text1:lang(en):before,
+af|panelHeader.AFPanelIcoFA::title-text2:lang(en):before {
+    margin-right: 10px;
+}
+af|panelHeader.AFPanelIcoFA::title-text0:lang(ar):before,
+af|panelHeader.AFPanelIcoFA::title-text1:lang(ar):before,
+af|panelHeader.AFPanelIcoFA::title-text2:lang(ar):before {
+    margin-left: 10px;
+}
+
+
+
+
+
+/*
+ *
+ * ------------------------------------------------------------------[ROOT]--
+ */
+
+:root {
+    /* Vendors Setup */z
+    --font-awesome-family: "Font Awesome 6 Pro";
+    --font-awesome-light: 300;
+    --font-awesome-regualr: 400;
+    /* Colors */
+    --bg-color: #fff;/*#fbf9fa;*/
+    --primary-color: #AA1F2E;
+    --secondary-color: #A29366;/*#a19666;*/
+    --stone-gray-color: #939598;
+    --light-color: #939598;
+    --dark-color: #33323a;
+    --warning-color: #dbab1b;
+    --bg-red: #9f233d;
+    --footer-bg: #333333;
+    --disabled-color: #998787;
+    /* Spaces */
+    --mb-container: 1.5rem;
+    --mb-panels: 24px;
+    --px-bar: 1.2rem;
+    /* Fonts */
+    --application-font-size: 1rem;
+    --font-size-sm: 60%;
+    --font-size-md: 80%;
+    --font-size-lg: 120%;
+    --font-size-xl: 140%;
+    --font-size-2x: 160%;
+    --font-size-3x: 180%;
+    --menu-font-size: 1.1rem;
+    --readonly-label-font-size: 85%;
+    --readonly-content-font-size: 115%;
+    --title0-font-size: 1.8rem;
+    --title1-font-size: 1.5rem;
+    --title2-font-size: 1.3rem;
+    /* Modules & Components Setups */
+    --tab-height: 52px;
+    --main-header-user-height: 35px;
+    /* Buttons */
+    --button-bg-color: var(--primary-color);
+    --button-hover-bgColor: var(--secondary-color);
+    /* Panels */
+    --panels-border-raduis: 15px;
+    --panel-light-bg: #F6F7F9;
+    --border-light-color: #edeef1;/*#DEE2E6;*/
+    --panel-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    --login-fields-radius: 50px;
+    --login-button-radius: var(--login-fields-radius);
+    
+    /*--*//*fa-primary-color: var(--primary-color);*/
+    --fa-secondary-color: var(--secondary-color);
+}
