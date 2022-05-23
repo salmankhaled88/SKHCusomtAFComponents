@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<declarativeCompDefs xmlns="http://xmlns.oracle.com/adf/faces/rich/declarativecomp">
+  <declarativecomp-jsp-ui-def>/components/html/VerticalTracker.jspx</declarativecomp-jsp-ui-def>
+  <declarativecomp-jsp-ui-def>/components/html/BPMHistoryTracker.jspx</declarativecomp-jsp-ui-def>
+  <declarativecomp-jsp-ui-def>/components/faces/panelheader/PanelHeaderInlineTitle.jspx</declarativecomp-jsp-ui-def>
+  <declarativecomp-jsp-ui-def>/components/faces/radiobuttons/RadioButtonCard.jspx</declarativecomp-jsp-ui-def>
+  <declarativecomp-jsp-ui-def>/components/bootstrap/panelheader/PanelHeaderBsResponsive.jspx</declarativecomp-jsp-ui-def>
+  <declarativecomp-taglib>
+    <taglib-name>SKH Components</taglib-name>
+    <taglib-uri>https://skhcodebook.com/snippetdetails/8mVsoSeHprPDLTxtiObH</taglib-uri>
+    <taglib-prefix>skh</taglib-prefix>
+  </declarativecomp-taglib>
+</declarativeCompDefs>

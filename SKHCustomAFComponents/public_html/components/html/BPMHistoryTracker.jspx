@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <af:componentDef var="attrs" componentVar="comp" definition="private">
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description/>
+                <display-name>bpmHistoryTracker</display-name>
+                <attribute>
+                    <attribute-name>customClass</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                </attribute>
+                <attribute>
+                    <attribute-name>bindingIter</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                </attribute>
+                <component-extension>
+                    <component-tag-namespace>skh.adf.custom.components.html</component-tag-namespace>
+                    <component-taglib-uri>https://skhcodebook.com/snippetdetails/8mVsoSeHprPDLTxtiObH</component-taglib-uri>
+                </component-extension>
+            </component>
+        </af:xmlContent>
+    </af:componentDef>
+</jsp:root>
