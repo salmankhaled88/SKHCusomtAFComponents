@@ -104,9 +104,9 @@ public class VerticalTracker extends RichDeclarativeComponent {
             str.append("    </div>");
             
             // Append custom css
-            str.append("<style>");
-            str.append(getTrackerCss());
-            str.append("</style>");
+//            str.append("<style>");
+//            str.append(getTrackerCss());
+//            str.append("</style>");
             
             //close tracking-icon
             str.append("</div>");

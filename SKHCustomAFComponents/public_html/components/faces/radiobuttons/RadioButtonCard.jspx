@@ -11,7 +11,7 @@
                            shortDesc="#{bindings[attrs.attrBinding].hints.tooltip}"
                            autoSubmit="#{attrs.autoSubmit}"
                            disabled="#{attrs.disabled}"
-                           styleClass="AFSelectionCard #{attrs.customClass}" 
+                           styleClass="radioButtonCard #{attrs.customClass}" 
                            layout="#{attrs.layout}">
             <f:selectItems value="#{bindings[attrs.attrBinding].items}" id="si2"/>
             <f:validator binding="#{bindings[attrs.attrBinding].validator}"/>

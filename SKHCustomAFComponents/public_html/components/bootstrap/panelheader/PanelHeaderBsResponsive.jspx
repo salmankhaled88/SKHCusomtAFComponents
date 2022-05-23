@@ -4,7 +4,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <af:componentDef var="attrs" componentVar="comp" definition="private">
         <?audit suppress oracle.jdeveloper.jsp.unnecessary-component-group?>
-        <af:panelGroupLayout id="pt_pgl1" layout="vertical" styleClass="panelHeaderResponsive panelTopBorder #{attrs.customClass}">
+        <af:panelGroupLayout id="pt_pgl1" layout="vertical" styleClass="panelHeaderBsResponsive #{attrs.customClass}">
             <h:panelGroup id="pt_pg2" layout="block" styleClass="row mb-3">
                 <h:panelGroup id="pt_pg3" layout="block" styleClass="col-md-6 d-flex align-items-center gap-2">
                     <af:icon id="pt_i1" styleClass="adf-fal #{attrs.faIcon} titleIcon"/>
