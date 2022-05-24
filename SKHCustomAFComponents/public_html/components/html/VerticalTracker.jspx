@@ -4,8 +4,6 @@
     <af:componentDef var="attrs" componentVar="comp" definition="private">
         <af:panelGroupLayout id="dc_pgl1" layout="vertical">
             <af:outputText value="#{backingBeanScope.verticalTrackerBean.html}" escape="false" id="ot3"/>
-            <af:separator id="dc_s1" styleClass="my-5"/>
-            <af:outputFormatted value="#{backingBeanScope.verticalTrackerBean.html}" id="dc_of1"/>
         </af:panelGroupLayout>
         <af:xmlContent>
             <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
@@ -85,6 +83,38 @@
                     </attribute-name>
                     <attribute-class>
                         java.util.ArrayList
+                    </attribute-class>
+                </attribute>
+                <attribute>
+                    <attribute-name>
+                        flatLabelClass
+                    </attribute-name>
+                    <attribute-class>
+                        java.lang.String
+                    </attribute-class>
+                </attribute>
+                <attribute>
+                    <attribute-name>
+                        flatValueClass
+                    </attribute-name>
+                    <attribute-class>
+                        java.lang.String
+                    </attribute-class>
+                </attribute>
+                <attribute>
+                    <attribute-name>
+                        badgeAttrsNames
+                    </attribute-name>
+                    <attribute-class>
+                        java.util.ArrayList
+                    </attribute-class>
+                </attribute>
+                <attribute>
+                    <attribute-name>
+                        badgeClass
+                    </attribute-name>
+                    <attribute-class>
+                        java.lang.String
                     </attribute-class>
                 </attribute>
                 <component-extension>

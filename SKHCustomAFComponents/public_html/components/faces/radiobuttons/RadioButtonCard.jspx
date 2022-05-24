@@ -20,7 +20,7 @@
         <af:xmlContent>
             <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
                 <description/>
-                <display-name>RadioButtonCard</display-name>
+                <display-name>radioButtonCard</display-name>
                 <attribute>
                     <attribute-name>
                         attrBinding

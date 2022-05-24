@@ -27,7 +27,7 @@
         <af:xmlContent>
             <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
                 <description/>
-                <display-name>PanelHeaderBsResponsive</display-name>
+                <display-name>panelHeaderBsResponsive</display-name>
                 <facet>
                     <facet-name>body</facet-name>
                 </facet>

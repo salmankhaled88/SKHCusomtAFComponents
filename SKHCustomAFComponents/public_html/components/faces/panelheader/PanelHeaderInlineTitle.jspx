@@ -13,7 +13,7 @@
         <af:xmlContent>
             <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
                 <description/>
-                <display-name>PanelHeaderInlineTitle</display-name>
+                <display-name>panelHeaderInlineTitle</display-name>
                 <facet>
                     <facet-name>body</facet-name>
                 </facet>

@@ -41,6 +41,10 @@ public class VerticalTracker extends RichDeclarativeComponent {
         String titleClass = (String) JSFUtils.resolveExpression("#{attrs.titleClass}");
         String subTitleClass = (String) JSFUtils.resolveExpression("#{attrs.subTitleClass}");
         ArrayList<String> flatAttrs = (ArrayList<String>) JSFUtils.resolveExpression("#{attrs.flatDataAttrsNames}");
+        String flatLabelClass = (String) JSFUtils.resolveExpression("#{attrs.flatLabelClass}");
+        String flatValueClass = (String) JSFUtils.resolveExpression("#{attrs.flatValueClass}");
+        ArrayList<String> badgeAttrsNames = (ArrayList<String>) JSFUtils.resolveExpression("#{attrs.badgeAttrsNames}");
+        String badgeClass = (String) JSFUtils.resolveExpression("#{attrs.badgeClass}");
 
         // Iterate
         DCIteratorBinding dc = ADFUtil.findIterator(iterName);
@@ -91,8 +95,8 @@ public class VerticalTracker extends RichDeclarativeComponent {
             
             str.append("        <div>");
             str.append("            <div class=\"d-flex align-items-center\">");
-            str.append("                <span class=\"text-muted me-3 item-label\">" + label + "</span>");
-            str.append("                <span> " + value + "</span>");
+            str.append("                <span class=\"text-muted me-3 item-label " + flatLabelClass + "\">" + label + "</span>");
+            str.append("                <span class=\"" + flatValueClass + "\"> " + value + "</span>");
             str.append("            </div>");
             str.append("        </div>");
             
@@ -100,7 +104,20 @@ public class VerticalTracker extends RichDeclarativeComponent {
             }
             // [CLOSE] additional lines of data with flat layout
             
-            // close tracking-content
+            // badges sections
+            if (badgeAttrsNames != null && !badgeAttrsNames.isEmpty()) {
+            for (String attrName : badgeAttrsNames) {
+            
+            Object value = row.getAttribute(attrName);
+            str.append("        <div class=\"badge " + badgeClass + "\">");
+            str.append(             value);
+            str.append("        </div>");
+                
+            }
+            }
+            // [close] badges sections
+            
+            // [close] tracking-content
             str.append("    </div>");
             
             // Append custom css
@@ -108,7 +125,7 @@ public class VerticalTracker extends RichDeclarativeComponent {
 //            str.append(getTrackerCss());
 //            str.append("</style>");
             
-            //close tracking-icon
+            // [close] tracking-icon
             str.append("</div>");
         }
         //////////////////////////////////////////////////////////////////////////////
