@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:h="http://java.sun.com/jsf/html">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <af:componentDef var="attrs" componentVar="comp" definition="private">
+        <af:panelGroupLayout id="dc_pgl1">
+            <af:resource type="css" source="/resources/skin/skin.css"/>
+            <?audit suppress oracle.jdeveloper.jsp.unnecessary-component-group?>
+            <h:panelGroup id="pt_pg2" layout="block" styleClass="row rows-col-md-2 rows-col-lg-3 test">
+                <af:iterator id="dc_i1" value="#{bindings[attrs.voName].attributesModel.attributes}" var="attr">
+                    <h:panelGroup id="pt_pg3" layout="block" styleClass="col">
+                        <af:dynamicComponent id="dc_dc1" attributeModel="#{attr}"
+                                             value="#{attr.attributeBinding.inputValue}"/>
+                    </h:panelGroup>
+                </af:iterator>
+            </h:panelGroup>
+        </af:panelGroupLayout>
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description/>
+                <display-name>panelFormResponsive</display-name>
+                <attribute>
+                    <attribute-name>voName</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                    <required>true</required>
+                </attribute>
+                <component-extension>
+                    <component-tag-namespace>skh.adf.custom.components.bootstrap</component-tag-namespace>
+                    <component-taglib-uri>https://skhcodebook.com/snippetdetails/8mVsoSeHprPDLTxtiObH</component-taglib-uri>
+                </component-extension>
+            </component>
+        </af:xmlContent>
+    </af:componentDef>
+</jsp:root>
