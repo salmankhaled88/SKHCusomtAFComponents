@@ -5,4 +5,14 @@
     <managed-bean-class>skh.adf.custom.components.html.VerticalTracker</managed-bean-class>
     <managed-bean-scope>backingBean</managed-bean-scope>
   </managed-bean>
+  <managed-bean id="__2">
+    <managed-bean-name>HistoryTrackerBean</managed-bean-name>
+    <managed-bean-class>skh.adf.custom.components.html.HistoryTracker</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
+  <managed-bean id="__3">
+    <managed-bean-name>selectManySearchableboxBean</managed-bean-name>
+    <managed-bean-class>skh.adf.custom.components.faces.SelectManySearchablebox</managed-bean-class>
+    <managed-bean-scope>backingBean</managed-bean-scope>
+  </managed-bean>
 </adfc-config>

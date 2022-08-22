@@ -6,7 +6,7 @@
         <?audit suppress oracle.jdeveloper.jsp.unnecessary-component-group?>
         <af:panelGroupLayout id="dc_pgl1" layout="vertical" styleClass="summaryCard #{attrs.customClass}">
             <h:panelGroup id="pt_pg2" layout="block" styleClass="d-flex justify-content-start align-items-center gap-3">
-                <af:icon id="dc_i1" styleClass="#{attrs.faClass}" rendered="#{not empty attrs.faClass}"/>
+                <af:icon id="dc_i1" styleClass="fa-2x #{attrs.faClass}" rendered="#{not empty attrs.faClass}"/>
                 <h:panelGroup id="pt_pg3" layout="block" styleClass="d-flex flex-column">
                     <af:outputText id="dc_ot1" value="#{attrs.title}" styleClass="summaryCardLabel #{attrs.titleClass}"/>
                     <af:outputText value="#{attrs.value}" styleClass="summaryCardValue #{attrs.valueClass}" id="dc_ot2"/>

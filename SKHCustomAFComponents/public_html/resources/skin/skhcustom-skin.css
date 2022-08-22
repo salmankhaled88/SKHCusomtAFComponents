@@ -166,6 +166,143 @@ af|selectOneRadio.radioButtonCard.cardIco::native-input:hover:before {
     color: #fff !important;
 }
 
+/*
+ *
+ * ------------------------------------------------------------------[Custom]---[historyTracker]--
+ * Draw vertical history tracker programmatically
+ * Dependencies  [fontawesome6] [HTML5] [bootstrap5.1]
+ */
+
+[class*=tracking-status-] p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center
+}
+[class*=tracking-status-] {
+    padding: 1.6rem 0
+}
+.historyTracker .tracking-list {
+    /*border: 1px solid #e5e5e5*/
+}
+.historyTracker .tracking-item {
+    border-left: 1px solid #e5e5e5;
+    position: relative;
+    /*padding: 2rem 1.5rem .5rem 2.5rem;*/
+    padding: 1rem 2rem;
+    /*font-size: 1rem;*/
+    margin-left: 1rem;
+    /*min-height: 5rem;*/
+}
+.historyTracker .tracking-item:last-child {
+    /*padding-bottom: 4rem;*/
+}
+.historyTracker .tracking-item .tracking-date {
+    margin-bottom: .5rem
+}
+.historyTracker .tracking-item .tracking-date span {
+    color: #888;
+    font-size: 85%;
+    padding-left: .4rem
+}
+.historyTracker .tracking-item .tracking-content {
+    padding: .5rem .8rem;
+    background-color: #f4f4f4;
+    border-radius: .5rem
+}
+.historyTracker .tracking-item .tracking-content span {
+    display: block;
+    color: #888;
+    /*font-size: 80%;*/
+}
+.historyTracker .tracking-item .tracking-icon {
+    line-height: 2.6rem;
+    position: absolute;
+    left: -1.3rem;
+    width: 2.6rem;
+    height: 2.6rem;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    background-color: var(--secondary-color);
+    color: #000;
+}
+.historyTracker .status-reject {
+    border-color: #d26759 !important ;
+    background-color: rgba(210, 103, 89, 0.25);
+}
+.historyTracker .status-approve-con {
+    border-color: #00e773 !important ;
+    background-color: rgba(0, 231, 115, 0.25);
+}
+
+@media (min-width:992px) {
+    .historyTracker .tracking-item {
+        margin-left: 7rem;
+    }
+    .historyTracker .tracking-item .tracking-date {
+        position: absolute;
+        left: -7rem;
+        /*width: 7.5rem;*/
+        text-align: right;
+    }
+    .historyTracker .tracking-item .tracking-date span {
+        display: block;
+    }
+}
+
+/*
+ * ------------------------------------------------------------------[Dependant Class]---[dotCircular]--
+ * Dependencies [CLASS: historyTracker] or [CLASS: verticalTracker]
+ * Circular like dot - does not have any value
+ */
+.verticalTracker.dotCircular .tracking-item .tracking-icon,
+.historyTracker.dotCircular .tracking-item .tracking-icon {
+    left: -0.5rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 100%;
+    margin-top: 5px;
+}
+.verticalTracker.dotCircular .tracking-item .tracking-content {
+    padding: 0px 0rem 0.8rem;
+}
+
+/*
+ *
+ * ------------------------------------------------------------------[Custom]---[listViewExpand]--
+ * Dependencies [adf faces] 
+ */
+
+af|listView.listViewExpand {
+    border: none;
+}
+
+.listViewExpand af|listItem {
+    padding: 0px;
+    border: none;
+    border-radius: 10px;
+    margin: 10px 0px;
+}
+.listViewExpand af|listItem:selected {
+    background-color: #fafafa ;
+}
+.listViewExpand .panelcontainer {
+    border: 1px solid #d6dfe6;
+    border-radius: 10px;
+    padding: 10px;
+}
+.listViewExpand af|selectOneChoice.title::content {
+    display: flex;
+    justify-content: start;
+    height: auto !important;
+    font-size: var(--font-size-lg) !important;
+    font-weight: bold !important;
+    padding: 0px !important;
+    overflow: hidden; 
+    color: var(--primaryColor) !important;
+}
 
 /*
  *
@@ -195,6 +332,79 @@ af|panelHeader.AFPanelIcoFA::title-text2:lang(ar):before {
 
 
 
+/*
+ *
+ * ------------------------------------------------------------------[Custom]---[summaryCard]--
+ * Summary small card
+ * Dependencies [adf faces]
+ */
+.summaryCard {
+    background-color: #FFFFFF;
+
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+	
+    border: 1px solid #DEE2E6;
+    border-radius: 7px;
+    padding: 15px;
+    padding-bottom:15px;
+    margin-bottom: var(--margin-bottom-var);
+}
+.summaryCard .summaryCardLabel {
+    font-weight: bold;
+    font-size: var(--fs-lg);
+}
+.summaryCard .summaryCardValue {
+    color: #6c757d;
+}
+
+
+/*
+ *
+ * ------------------------------------------------------------------[Custom]---[selectManySearchableBox]--
+ * Multi selections with search 
+ * Dependencies [fontawesome6] [bootstrap5.1]
+ */
+
+.selectManySearchableBox .selection-items-panel {
+    background-color: var(--panel-light-bg);
+    border: 1px solid var(--border-light-color);
+    border-radius: 10px;
+    padding: 12px 12px 12px;
+}
+.selectManySearchableBox .selection-items-panel af|link.showMore {
+    background-color: var(--bs-light);
+    color: #000;
+    border-radius: 7px;
+    padding: 0px 10px;;
+}
+.selectManySearchableBox .selection-items-panel af|link:hover {
+    background-color: #e6e7e9;
+}
+
+.selectManySearchableBox .list-panel {
+    border: 1px solid var(--border-light-color);
+    border-radius: 10px;
+    padding: 12px 12px;
+}
+.selectManySearchableBox .list-panel table {
+    min-width: 100% !important;
+    width: 100% !important; 
+}
+.selectManySearchableBox .list-panel af|selectManyListbox::content {
+    background-color: transparent;
+    border: none;
+}
+.selectManySearchableBox .list-panel af|selectManyListbox::item {
+    background-color: transparent;
+    margin-bottom: 5px;
+}
+.selectManySearchableBox .list-panel af|inputText::content {
+    height: 35px !important;
+    margin-bottom: 10px;
+    font-size: 90%;
+}
 
 
 /*
@@ -252,4 +462,9 @@ af|panelHeader.AFPanelIcoFA::title-text2:lang(ar):before {
     
     /*--*//*fa-primary-color: var(--primary-color);*/
     --fa-secondary-color: var(--secondary-color);
+}
+
+.test {
+    color: red !important;
+    background-color: Orange !important;
 }

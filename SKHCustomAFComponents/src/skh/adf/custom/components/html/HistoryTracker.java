@@ -71,11 +71,15 @@ public class HistoryTracker extends RichDeclarativeComponent {
             
             // Item attributes
             Object _circularAttrName = circularAttrName != null ? row.getAttribute(circularAttrName) : "";
-            Object _assignDate = row.getAttribute(assignAttrName);
+            Object _assignDate = row.getAttribute(assignAttrName) != null ? row.getAttribute(assignAttrName) : "";
             Object _titleAttrName = row.getAttribute(titleAttrName);
-            Object _subTitleAttrName = subTitleAttrName != null ? row.getAttribute(subTitleAttrName) : "";
-            String date = dateFormate.format(_assignDate);
-            String time = timeFormate.format(_assignDate);
+            Object _subTitleAttrValue = subTitleAttrName != null ? row.getAttribute(subTitleAttrName) : "";
+            String date = "-";
+            String time = "-";
+            if (_assignDate != null) {
+                date = dateFormate.format(_assignDate);
+                time = timeFormate.format(_assignDate);
+            }
             
             // Main item tag
             str.append("<div class=\"tracking-item\">");
@@ -96,7 +100,7 @@ public class HistoryTracker extends RichDeclarativeComponent {
             str.append("    <div class=\"tracking-content\">");
             str.append("        <div class=\"mb-2\">");
             str.append("            <span class=\"fw-bold " + titleClass + "\">" + _titleAttrName + "</span>");
-            str.append("            <span class=\"text-muted " + subTitleClass + "\"> " + _subTitleAttrName + "</span>");
+            str.append("            <span class=\"text-muted " + subTitleClass + "\"> " + isNull(_subTitleAttrValue+"") + "</span>");
             str.append("        </div>");
             
             // additional lines of data with flat layout
@@ -109,7 +113,7 @@ public class HistoryTracker extends RichDeclarativeComponent {
             str.append("        <div>");
             str.append("            <div class=\"d-flex align-items-center\">");
             str.append("                <span class=\"text-muted me-3 item-label " + flatLabelClass + "\">" + label + "</span>");
-            str.append("                <span class=\"" + flatValueClass + "\"> " + value + "</span>");
+            str.append("                <span class=\"" + flatValueClass + "\"> " + isNull(value+"") + "</span>");
             str.append("            </div>");
             str.append("        </div>");
             
@@ -121,9 +125,9 @@ public class HistoryTracker extends RichDeclarativeComponent {
             if (badgeAttrsNames != null && !badgeAttrsNames.isEmpty()) {
             for (String attrName : badgeAttrsNames) {
             
-            Object value = row.getAttribute(attrName);
+            Object value = row.getAttribute(attrName) != null;
             str.append("        <div class=\"badge " + badgeClass + "\">");
-            str.append(             value);
+            str.append(             isNull(value+""));
             str.append("        </div>");
                 
             }
@@ -352,5 +356,9 @@ public class HistoryTracker extends RichDeclarativeComponent {
         html = generateBsHTML();
         return html;
     } 
+    
+    private String isNull(String value) {
+        return value == null || value.equalsIgnoreCase("null") || value.equals("") ? "-" : value;
+    }
     
 }

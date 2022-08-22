@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.1" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+          xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+    <?audit suppress oracle.jdeveloper.jsp.unnecessary-component-group?>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <af:componentDef var="attrs" componentVar="comp" definition="private">
+        <af:panelGroupLayout id="dc_pgl1" layout="vertical">
+            <af:resource type="javascript">
+              function catchKeyStroke(event) {
+                  component = event.getSource();
+                  AdfCustomEvent.queue(component, "filter", 
+                  {
+                      filterKey : component.getSubmittedValue()
+                  },
+                  true);
+                  event.cancel();
+              }
+            </af:resource>
+            <af:panelGroupLayout id="pgl1" layout="vertical"
+                                 styleClass="selectManySearchableBox d-flex flex-column gap-2 ps-3 pt-3"
+                                 inlineStyle="width: 300px;">
+                <af:outputText id="ot2" value="#{attrs.comonentLabel}" styleClass="fw-bold fs-lg"
+                               rendered="#{not empty attrs.comonentLabel}"/>
+                <!--Selected Items Panel-->
+                <af:panelGroupLayout id="pgl4" layout="vertical" styleClass="selection-items-panel"
+                                     partialTriggers="smc1 l1"
+                                     visible="#{not empty backingBeanScope.selectManySearchableboxBean.actualSelectedValues}">
+                    <h:panelGroup id="pg1" layout="block"
+                                  styleClass="d-flex align-items-center justify-content-between mb-2">
+                        <af:outputText id="ot3" value="#{attrs.selectedItemLabel}" styleClass="fs-md fw-bold"/>
+                        <af:link id="l2" shortDesc="Show All" styleClass="adf-fas fa-ellipsis showMore"
+                                 action="#{backingBeanScope.selectManySearchableboxBean.showAllSelections}"
+                                 rendered="#{backingBeanScope.selectManySearchableboxBean.actualSelectedValues.size() > 4}"/>
+                    </h:panelGroup>
+                    <af:panelGroupLayout id="pgl2" layout="vertical" styleClass="d-flex flex-wrap gap-1">
+                        <af:forEach items="#{backingBeanScope.selectManySearchableboxBean.actualSelectedValues}" var="item"
+                                    end="#{backingBeanScope.selectManySearchableboxBean.selectionDisplayRange}">
+                            <h:panelGroup id="pg2" layout="block"
+                                          styleClass="d-flex align-items-center gap-1 badge bg-info #{attrs.selectionBadgeClass}">
+                                <af:outputText id="ot1" value="#{item.label}"/>
+                                <af:link id="l1" styleClass="adf-fas fa-times-circle"
+                                         action="#{backingBeanScope.selectManySearchableboxBean.removeSelected}">
+                                    <af:setActionListener from="#{item}"
+                                                          to="#{backingBeanScope.selectManySearchableboxBean.removeSelectedItem}"/>
+                                </af:link>
+                            </h:panelGroup>
+                        </af:forEach>
+                    </af:panelGroupLayout>
+                </af:panelGroupLayout>
+                <!--Filter & List-->
+                <af:panelGroupLayout id="pgl5" layout="vertical" styleClass="list-panel">
+                    <af:inputText id="it10" value="#{backingBeanScope.selectManySearchableboxBean.keyword}" autoSubmit="true"
+                                  label="Search" immediate="true" simple="true" placeholder="Filter..."
+                                  styleClass="#{attrs.searchFieldClass}">
+                        <af:clientListener type="keyUp" method="catchKeyStroke"/>
+                        <af:serverListener type="filter" method="#{backingBeanScope.selectManySearchableboxBean.filterList}"/>
+                    </af:inputText>
+                    <af:panelGroupLayout id="pgl3" layout="horizontal">
+                        <af:selectManyListbox label="Label 2" value="#{backingBeanScope.selectManySearchableboxBean.selectedValues}"
+                                              id="smc1" autoSubmit="true" simple="true" size="8"
+                                              valueChangeListener="#{backingBeanScope.selectManySearchableboxBean.selectionListner}"
+                                              partialTriggers="it10 smc1" selectAllVisible="false"
+                                              styleClass="#{attrs.listBoxClass}">
+                            <f:selectItems value="#{backingBeanScope.selectManySearchableboxBean.searchableList}" id="si1"/>
+                        </af:selectManyListbox>
+                    </af:panelGroupLayout>
+                </af:panelGroupLayout>
+            </af:panelGroupLayout>
+        </af:panelGroupLayout>
+        <af:xmlContent>
+            <component xmlns="http://xmlns.oracle.com/adf/faces/rich/component">
+                <description/>
+                <display-name>selectManySearchableBox</display-name>
+                <component-class>skh.adf.custom.components.faces.SelectManySearchablebox</component-class>
+                <attribute>
+                    <attribute-name>iteratorName</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                    <required>true</required>
+                </attribute>
+                <attribute>
+                    <attribute-name>itemLabelAttrName</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                    <required>true</required>
+                </attribute>
+                <attribute>
+                    <attribute-name>itemValueAttrName</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                    <required>true</required>
+                </attribute>
+                <attribute>
+                    <attribute-name>selectedItemLabel</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                    <default-value>Selected Items</default-value>
+                </attribute>
+                <attribute>
+                    <attribute-name>comonentLabel</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                    <required>false</required>
+                </attribute>
+                <attribute>
+                    <attribute-name>selectionBadgeClass</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                </attribute>
+                <attribute>
+                    <attribute-name>searchFieldClass</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                </attribute>
+                <attribute>
+                    <attribute-name>listBoxClass</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                </attribute>
+                <attribute>
+                    <attribute-name>
+                        returnList
+                    </attribute-name>
+                    <attribute-class>
+                        java.util.List
+                    </attribute-class>
+                    <default-value>
+                        #{backingBeanScope.selectManySearchableboxBean.actualSelectedValues}
+                    </default-value>
+                </attribute>
+                <attribute>
+                    <attribute-name>
+                        initialSelectedItems
+                    </attribute-name>
+                    <attribute-class>
+                        java.util.List
+                    </attribute-class>
+                    <required>
+                        false
+                    </required>
+                </attribute>
+                <component-extension>
+                    <component-tag-namespace>skh.adf.custom.components.faces</component-tag-namespace>
+                    <component-taglib-uri>https://skhcodebook.com/snippetdetails/8mVsoSeHprPDLTxtiObH</component-taglib-uri>
+                </component-extension>
+            </component>
+        </af:xmlContent>
+    </af:componentDef>
+</jsp:root>

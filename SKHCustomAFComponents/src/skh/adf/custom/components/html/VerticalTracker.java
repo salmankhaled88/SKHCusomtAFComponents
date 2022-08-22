@@ -1,21 +1,14 @@
 package skh.adf.custom.components.html;
 
-import com.tangosol.coherence.component.net.management.gateway.Local;
-
 import java.util.ArrayList;
 
 import oracle.adf.model.binding.DCIteratorBinding;
 import oracle.adf.view.rich.component.rich.fragment.RichDeclarativeComponent;
 
-import oracle.javatools.jndi.LocalContext;
-
 import oracle.jbo.AttributeHints;
 import oracle.jbo.Row;
 import oracle.jbo.RowSetIterator;
-
 import oracle.jbo.ViewObject;
-import oracle.jbo.server.AttributeDefImpl;
-import oracle.jbo.server.ViewRowAttrHintsImpl;
 
 import skh.adf.custom.shared.ADFUtil;
 import skh.adf.custom.shared.JSFUtils;
@@ -66,9 +59,9 @@ public class VerticalTracker extends RichDeclarativeComponent {
             }
             
             // Item attributes
-            Object _circularAttrName = row.getAttribute(circularAttrName);
-            Object _titleAttrName = row.getAttribute(titleAttrName);
-            Object _subTitleAttrName = row.getAttribute(subTitleAttrName);
+            Object _circularAttrValue = circularAttrName != null ? row.getAttribute(circularAttrName) : "";
+            Object _titleAttrValue = row.getAttribute(titleAttrName);
+            Object _subTitleAttrValue = row.getAttribute(subTitleAttrName) != null ? row.getAttribute(subTitleAttrName) : "";
             
             // Main item tag
             str.append("<div class=\"tracking-item\" >");
@@ -76,27 +69,27 @@ public class VerticalTracker extends RichDeclarativeComponent {
             // colored circle on line
             // Circular Attribute
             str.append("    <div class=\"tracking-icon " + circularClass + "\">");
-            str.append("        <strong>" + _circularAttrName + "</strong>");
+            str.append("        <strong>" + _circularAttrValue + "</strong>");
             str.append("    </div>");
 
             // Right Contents
             str.append("    <div class=\"tracking-content\">");
             str.append("        <div class=\"mb-2\">");
-            str.append("            <span class=\"fw-bold " + titleClass + "\">" + _titleAttrName + "</span>");
-            str.append("            <span class=\"text-muted " + subTitleClass + "\"> " + _subTitleAttrName + "</span>");
+            str.append("            <span class=\"fw-bold " + titleClass + "\">" + _titleAttrValue + "</span>");
+            str.append("            <span class=\"text-muted " + subTitleClass + "\"> " + isNull(_subTitleAttrValue+"") + "</span>");
             str.append("        </div>");
             
             // additional lines of data with flat layout
             if (flatAttrs != null && !flatAttrs.isEmpty()) {
             for (String attrName : flatAttrs) {
             
-            Object value = row.getAttribute(attrName);
+            Object value = row.getAttribute(attrName) != null ? row.getAttribute(attrName) : "-";
             String label = (String) (object.findAttributeDef(attrName)).getProperty(AttributeHints.ATTRIBUTE_LABEL);
             
             str.append("        <div>");
             str.append("            <div class=\"d-flex align-items-center\">");
             str.append("                <span class=\"text-muted me-3 item-label " + flatLabelClass + "\">" + label + "</span>");
-            str.append("                <span class=\"" + flatValueClass + "\"> " + value + "</span>");
+            str.append("                <span class=\"" + flatValueClass + "\"> " + isNull(value+"") + "</span>");
             str.append("            </div>");
             str.append("        </div>");
             
@@ -108,9 +101,9 @@ public class VerticalTracker extends RichDeclarativeComponent {
             if (badgeAttrsNames != null && !badgeAttrsNames.isEmpty()) {
             for (String attrName : badgeAttrsNames) {
             
-            Object value = row.getAttribute(attrName);
+            Object value = row.getAttribute(attrName) != null ? row.getAttribute(attrName) : "-";
             str.append("        <div class=\"badge " + badgeClass + "\">");
-            str.append(             value);
+            str.append(             isNull(value+""));
             str.append("        </div>");
                 
             }
@@ -207,5 +200,9 @@ public class VerticalTracker extends RichDeclarativeComponent {
         html = generateBsHTML();
         return html;
     }    
+    
+    private String isNull(String value) {
+        return value == null || value.equalsIgnoreCase("null") || value.equals("") ? "-" : value;
+    }
     
 }

@@ -6,62 +6,68 @@
         <af:panelGroupLayout id="dc_pgl1" layout="vertical">
             <?audit suppress oracle.jdeveloper.jsp.unnecessary-component-group?>
             <af:listView id="t1" value="#{bindings[attrs.voName].collectionModel}" var="row" varStatus="varStat"
-                         selection="single"
+                         selection="#{attrs.selection eq 'none' or attrs.selection eq 'multiple' or attrs.selection eq 'single' ? attrs.selection : 'none'}"
+                         selectionListener="#{bindings[attrs.voName].collectionModel.makeCurrent}"
                          selectedRowKeys="#{bindings[attrs.voName].collectionModel.selectedRow}"
-                         rows="#{bindings[attrs.voName].rangeSize}"
-                         styleClass="listViewExpand #{attrs.customClass}"
+                         rows="#{attrs.rowsRangeSize}" styleClass="listViewExpand #{attrs.customClass}"
                          rendered="#{bindings[attrs.voName].estimatedRowCount > 0}">
-                <af:listItem id="li1" styleClass="py-0 px-0 border-0 ">
-                    <af:panelGroupLayout id="pgl4" layout="vertical" styleClass="panelcontainer #{attrs.panelClass}">
-                        <h:panelGroup id="pgl5" layout="block" styleClass="row mt-2">
-                            <h:panelGroup layout="block" id="pgl3" styleClass="col-md-10 position-relative">
-                                <h:panelGroup layout="block" id="pgl14" styleClass="d-flex w-100">
+                <af:listItem id="li1" styleClass="py-0 px-0 border-0">
+                    <af:panelGroupLayout id="pgl4" layout="vertical"
+                                         styleClass="panelcontainer #{attrs.panelContainerClasses}">
+                        <h:panelGroup id="pgl5" layout="block" styleClass="row">
+                            <!--Left Section-->
+                            <h:panelGroup layout="block" id="pgl3"
+                                          styleClass="col-md-4 col-lg-2 d-flex align-items-center #{attrs.showExpandButtons ? 'gap-3' : ''}"
+                                          rendered="#{attrs.showExpandButtons or attrs.showIconicSection}">
+                                <h:panelGroup id="dc_pg1" layout="block" styleClass="w-100">
                                     <!-- Show more/less -->
-                                    <af:panelGroupLayout id="pgl11" layout="vertical" 
-                                                         styleClass="d-flex align-items-center ps-md-2 pe-3"
+                                    <af:panelGroupLayout id="pgl11" layout="vertical" styleClass="#{attrs.showMoreClasses}"
                                                          rendered="#{attrs.showExpandButtons}">
-                                        <af:link id="b7" styleClass="stretched-link #{attrs.faHideClass}"
+                                        <af:link id="b7"
+                                                 styleClass="stretched-link #{empty attrs.faHideClass ? 'adf-fas fa-chevron-up' : attrs.faHideClass}"
                                                  rendered="#{requestScope.showMore and varStat.index==requestScope.showRowIndex}"
-                                                 shortDesc="Expand"
-                                                 partialSubmit="false">
+                                                 shortDesc="Expand">
                                             <af:setActionListener from="#{false}" to="#{requestScope.showMore}"/>
                                             <af:setActionListener from="#{varStat.index}"
                                                                   to="#{requestScope.showRowIndex}"/>
-                                            <af:target execute="@this" render="pgl13"/>
+                                            <!--<af:target execute="@this" render="li1"/>-->
                                         </af:link>
-                                        <af:link id="l4" styleClass="stretched-link #{attrs.faShowClass}"
+                                        <af:link id="l4"
+                                                 styleClass="stretched-link #{empty attrs.faShowClass ? 'adf-fas fa-chevron-down' : attrs.faShowClass}"
                                                  rendered="#{!requestScope.showMore or (requestScope.showMore and varStat.index != requestScope.showRowIndex)}"
-                                                 shortDesc="Collapse"
-                                                 partialSubmit="false">
+                                                 shortDesc="Collapse">
                                             <af:setActionListener from="#{true}" to="#{requestScope.showMore}"/>
                                             <af:setActionListener from="#{varStat.index}"
                                                                   to="#{requestScope.showRowIndex}"/>
-                                            <af:target execute="@this" render="pgl13"/>
+                                            <!--<af:target execute="@this" render="li1"/>-->
                                         </af:link>
                                     </af:panelGroupLayout>
-                                    <!-- Main Data -->
-                                    <h:panelGroup id="pgl12" layout="block">
-                                        <af:facetRef facetName="mainContent"/>
-                                        <!--<af:outputText id="l1" value="#{pageFlowScope.inboxBean.currentRowStep}"
-                                                       inlineStyle="font-weight: bold; font-size: 1rem;"
-                                                       styleClass="primaryColor"/>
-                                        <af:outputText id="ot19" value="#{pageFlowScope.inboxBean.processName}"/>
-                                        <af:outputText value="#{row.assignedDate}" id="ot2"
-                                                       styleClass="fs-md text-musted">
-                                            <af:convertDateTime pattern="dd MMM yyyy hh:mm:ss a"/>
-                                        </af:outputText>-->
+                                    <!-- Iconic Section -->
+                                    <h:panelGroup id="pgl12" layout="block"
+                                                  styleClass="#{empty attrs.iconicClasses ? 'd-flex align-items-center justify-content-center w-100 h-100' : attrs.iconicClasses}"
+                                                  rendered="#{attrs.showIconicSection}">
+                                        <af:facetRef facetName="iconicContent"/>
                                     </h:panelGroup>
                                 </h:panelGroup>
                             </h:panelGroup>
+                            <!-- Main Data -->
+                            <h:panelGroup layout="block" id="dc_pg2"
+                                          styleClass="#{attrs.showExpandButtons or attrs.showIconicSection ? 'col-md-8 col-lg-8' : 'col-lg-10'}">
+                                <h:panelGroup id="dc_pg3" layout="block" styleClass="w-100 mt-3 mt-sm-0">
+                                    <af:facetRef facetName="mainContent"/>
+                                </h:panelGroup>
+                            </h:panelGroup>
                             <!-- Actions -->
-                            <h:panelGroup layout="block" id="pgl10" styleClass="col-md-2">
-                                <af:panelGroupLayout id="pgl8" layout="vertical" styleClass="w-100 h-100 pe-3">
-                                    <af:facetRef facetName="toolbar"/>
+                            <h:panelGroup layout="block" id="pgl10" styleClass="col-md-12 col-lg-2"
+                                          rendered="#{attrs.showActions}">
+                                <af:panelGroupLayout id="pgl8" layout="vertical"
+                                                     styleClass="w-100 h-100 d-flex flex-column flex-sm-row justify-content-sm-end align-items-sm-center gap-1 gap-sm-3 mt-3 mt-sm-0">
+                                    <af:facetRef facetName="actions"/>
                                 </af:panelGroupLayout>
                             </h:panelGroup>
                         </h:panelGroup>
                         <!-- Additinal Data Panel -->
-                        <af:panelGroupLayout id="pgl13" layout="vertical"
+                        <af:panelGroupLayout id="pgl13" layout="vertical" partialTriggers="b7"
                                              rendered="#{requestScope.showMore and varStat.index==requestScope.showRowIndex}">
                             <af:separator id="s3" styleClass="mt-3 mb-2"/>
                             <af:facetRef facetName="moreDetails"/>
@@ -80,13 +86,16 @@
                 <display-name>listViewExpand</display-name>
                 <component-class>skh.adf.custom.components.bootstrap.ListViewExpand</component-class>
                 <facet>
-                    <facet-name>toolbar</facet-name>
+                    <facet-name>actions</facet-name>
+                </facet>
+                <facet>
+                    <facet-name>mainContent</facet-name>
                 </facet>
                 <facet>
                     <facet-name>moreDetails</facet-name>
                 </facet>
                 <facet>
-                    <facet-name>mainContent</facet-name>
+                    <facet-name>iconicContent</facet-name>
                 </facet>
                 <attribute>
                     <attribute-name>voName</attribute-name>
@@ -94,9 +103,8 @@
                     <required>true</required>
                 </attribute>
                 <attribute>
-                    <attribute-name>customClass</attribute-name>
+                    <attribute-name>selection</attribute-name>
                     <attribute-class>java.lang.String</attribute-class>
-                    <required>false</required>
                 </attribute>
                 <attribute>
                     <attribute-name>faShowClass</attribute-name>
@@ -111,35 +119,53 @@
                     <attribute-class>java.lang.String</attribute-class>
                 </attribute>
                 <attribute>
-                    <attribute-name>panelClass</attribute-name>
+                    <attribute-name>panelContainerClasses</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                </attribute>
+                <attribute>
+                    <attribute-name>noDataText</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                    <default-value>No Data</default-value>
+                </attribute>
+                <attribute>
+                    <attribute-name>showExpandButtons</attribute-name>
+                    <attribute-class>java.lang.Boolean</attribute-class>
+                    <default-value>true</default-value>
+                </attribute>
+                <attribute>
+                    <attribute-name>showIconicSection</attribute-name>
+                    <attribute-class>java.lang.Boolean</attribute-class>
+                    <default-value>false</default-value>
+                </attribute>
+                <attribute>
+                    <attribute-name>showActions</attribute-name>
+                    <attribute-class>java.lang.Boolean</attribute-class>
+                    <default-value>true</default-value>
+                </attribute>
+                <attribute>
+                    <attribute-name>iconicClasses</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                </attribute>
+                <attribute>
+                    <attribute-name>showMoreClasses</attribute-name>
+                    <attribute-class>java.lang.String</attribute-class>
+                </attribute>
+                <attribute>
+                    <attribute-name>customClass</attribute-name>
                     <attribute-class>java.lang.String</attribute-class>
                 </attribute>
                 <attribute>
                     <attribute-name>
-                        noDataText
+                        rowsRangeSize
                     </attribute-name>
                     <attribute-class>
-                        java.lang.String
+                        java.lang.Integer
                     </attribute-class>
                     <default-value>
-                        No Data
+                        #{bindings[attrs.voName].rangeSize}
                     </default-value>
                     <required>
                         false
-                    </required>
-                </attribute>
-                <attribute>
-                    <attribute-name>
-                        showExpandButtons
-                    </attribute-name>
-                    <attribute-class>
-                        java.lang.Boolean
-                    </attribute-class>
-                    <default-value>
-                        true
-                    </default-value>
-                    <required>
-                        true
                     </required>
                 </attribute>
                 <component-extension>

@@ -84,11 +84,11 @@
                         java.lang.String
                     </attribute-class>
                     <default-value>
-                        bindings[attrs.attrBinding].label
+                        #{bindings[attrs.attrBinding].label}
                     </default-value>
                 </attribute>
                 <component-extension>
-                    <component-tag-namespace>skh.adf.custom.components.selections</component-tag-namespace>
+                    <component-tag-namespace>skh.adf.custom.components.faces</component-tag-namespace>
                     <component-taglib-uri>https://skhcodebook.com/snippetdetails/8mVsoSeHprPDLTxtiObH</component-taglib-uri>
                 </component-extension>
             </component>

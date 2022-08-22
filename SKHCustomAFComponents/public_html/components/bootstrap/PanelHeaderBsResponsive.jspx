@@ -12,8 +12,8 @@
                 </h:panelGroup>
                 <h:panelGroup id="pt_pg6" layout="block"
                               styleClass="col-md-6 d-flex flex-wrap justify-content-center justify-content-md-end">
-                    <af:panelGroupLayout id="pgl8d" layout="vertical"
-                                         styleClass="d-sm-flex justify-content-sm-end align-items-sm-center w-100 h-100 gap-2 pt-2 pt-md-0">
+                    <af:panelGroupLayout id="pgl8" layout="vertical"
+                                                     styleClass="w-100 h-100 d-flex flex-column flex-sm-row justify-content-sm-end align-items-sm-center gap-1 gap-sm-3 mt-3 mt-sm-0">
                         <af:facetRef facetName="toolbar"/>
                     </af:panelGroupLayout>
                 </h:panelGroup>
@@ -51,7 +51,7 @@
                     </attribute-class>
                 </attribute>
                 <component-extension>
-                    <component-tag-namespace>skh.adf.custom.components.panels</component-tag-namespace>
+                    <component-tag-namespace>skh.adf.custom.components.bootstrap</component-tag-namespace>
                     <component-taglib-uri>https://skhcodebook.com/snippetdetails/8mVsoSeHprPDLTxtiObH</component-taglib-uri>
                 </component-extension>
             </component>
